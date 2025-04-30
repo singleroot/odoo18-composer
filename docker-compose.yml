@@ -1,27 +1,53 @@
+version: '3.1'
 services:
-  odoo_web:
+  web:
     image: odoo:18
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: root
+    #depends_on:
+    #  - db
     ports:
       - "10018:8069"
       - "20018:8072" # live chat
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
     environment:
       - DB_HOST=168.231.73.120
       - DB_PORT=5432
       - DB_USER=xecohil
       - DB_PASSWORD=Chucam2022++
       - PIP_BREAK_SYSTEM_PACKAGES=1
-    volumes:
-      - ./entrypoint.sh:/entrypoint.sh
-      - ./customs:/customs
-      - ./odoo.conf:/etc/odoo/odoo.conf
-      #- odoo18-web-data:/var/lib/odoo
-      - ./addons:/mnt/extra-addons
-      - ./etc:/etc/odoo
-    restart: always
+      #- PASSWORD_FILE=/run/secrets/postgresql_password
+    #secrets:
+    #  - postgresql_password
+volumes:
+  odoo-web-data:
 
-#volumes:
-#  odoo18-web-data:
+
+#services:
+#  odoo_web:
+#    image: odoo:18
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    user: root
+#    ports:
+#      - "10018:8069"
+#      - "20018:8072" # live chat
+#    environment:
+#      - DB_HOST=168.231.73.120
+#      - DB_PORT=5432
+#      - DB_USER=xecohil
+#      - DB_PASSWORD=Chucam2022++
+#      - PIP_BREAK_SYSTEM_PACKAGES=1
+#    volumes:
+#      - ./entrypoint.sh:/entrypoint.sh
+#      - ./customs:/customs
+#      - ./odoo.conf:/etc/odoo/odoo.conf
+#      #- odoo18-web-data:/var/lib/odoo
+#      - ./addons:/mnt/extra-addons
+#      - ./etc:/etc/odoo
+#    restart: always
+#
+##volumes:
+##  odoo18-web-data:
