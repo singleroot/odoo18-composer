@@ -102,9 +102,9 @@ USER odoo
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
-RUN sudo chmod +x /entrypoint.sh
-RUN sudo chmod +x ./entrypoint.sh
-COPY ./entrypoint.sh /entrypoint.sh
+#RUN sudo chmod +x /entrypoint.sh
+#RUN sudo chmod +x ./entrypoint.sh
+#COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 #ENTRYPOINT ["/entrypoint.sh"]
