@@ -15,6 +15,9 @@ services:
       - ./customs:/customs
       - ./odoo.conf:/etc/odoo/odoo.conf
       - odoo18-web-data:/var/lib/odoo
+      - ./entrypoint.sh:/entrypoint.sh
+      - ./addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
 
 volumes:
   odoo18-web-data:
