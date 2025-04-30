@@ -64,9 +64,9 @@
 services:
   odoo_web:
     image: odoo:18
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
     user: root
     ports:
       - "10018:8069"
