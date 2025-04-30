@@ -12,8 +12,9 @@ services:
             - "20018:8072"
         volumes:
             - odoo-data:/var/lib/odoo:delegated
-            - ~/odoo15e/enterprise:/mnt/enterprise:delegated
-            - ~/odoo15e/design-themes:/mnt/design-themes:delegated
+            - ./entrypoint.sh:/entrypoint.sh
+            - ./addons:/mnt/extra-addons
+            - ./etc:/etc/odoo
             - ./conf:/etc/odoo
         environment: 
             - DB_PORT_5432_TCP_ADDR=168.231.73.120
