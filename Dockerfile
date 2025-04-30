@@ -83,6 +83,9 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
 COPY ./entrypoint.sh /
 COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+COPY ./entrypoint.sh /entry.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 COPY ./odoo.conf /etc/odoo/
 
