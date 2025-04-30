@@ -1,5 +1,6 @@
 services:
   odoo_web:
+    image: odoo:18
     build:
       context: .
       dockerfile: Dockerfile
