@@ -5,12 +5,14 @@ services:
       dockerfile: Dockerfile
     user: root
     ports:
-      - "8069:8069"
+      - "10018:8069"
+      - "20018:8072" # live chat
     environment:
       - DB_HOST=168.231.73.120
       - DB_PORT=5432
       - DB_USER=xecohil
       - DB_PASSWORD=Chucam2022++
+      - PIP_BREAK_SYSTEM_PACKAGES=1
     volumes:
       - ./customs:/customs
       - ./odoo.conf:/etc/odoo/odoo.conf
@@ -18,6 +20,7 @@ services:
       - ./entrypoint.sh:/entrypoint.sh
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
+    restart: always
 
 volumes:
   odoo18-web-data:
