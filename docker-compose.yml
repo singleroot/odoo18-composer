@@ -6,11 +6,15 @@ services:
     #  - db
     ports:
       - "10018:8069"
-      - "20018:8072" # live chat
+      - "20018:8072"
+    user: root
     volumes:
+      - ./entrypoint.sh:/entrypoint.sh
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    tty: true
+    command: --
     environment:
       - DB_HOST=168.231.73.120
       - DB_PORT=5432
@@ -18,6 +22,7 @@ services:
       - DB_PASSWORD=Chucam2022++
       - PIP_BREAK_SYSTEM_PACKAGES=1
       #- PASSWORD_FILE=/run/secrets/postgresql_password
+    restart: always
     #secrets:
     #  - postgresql_password
 volumes:
