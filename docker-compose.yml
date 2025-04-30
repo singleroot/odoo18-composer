@@ -9,7 +9,7 @@ services:
       - "20018:8072"
     user: root
     volumes:
-      - ./entrypoint.sh:/entrypoint.sh
+      #- ./entrypoint.sh:/entrypoint.sh
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
