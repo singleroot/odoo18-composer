@@ -8,8 +8,8 @@ services:
     environment:
       - DB_HOST=168.231.73.120
       - DB_PORT=5432
-      - DB_USER=odoo18
-      - DB_PASSWORD=odoo
+      - DB_USER=xecohil
+      - DB_PASSWORD=Chucam2022++
     volumes:
       - ./customs:/customs
       - ./odoo.conf:/etc/odoo/odoo.conf
