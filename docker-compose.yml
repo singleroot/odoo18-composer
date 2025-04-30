@@ -15,13 +15,13 @@ services:
       - DB_PASSWORD=Chucam2022++
       - PIP_BREAK_SYSTEM_PACKAGES=1
     volumes:
+      - ./entrypoint.sh:/entrypoint.sh
       - ./customs:/customs
       - ./odoo.conf:/etc/odoo/odoo.conf
-      - odoo18-web-data:/var/lib/odoo
-      - ./entrypoint.sh:/entrypoint.sh
+      #- odoo18-web-data:/var/lib/odoo
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always
 
-volumes:
-  odoo18-web-data:
+#volumes:
+#  odoo18-web-data:
