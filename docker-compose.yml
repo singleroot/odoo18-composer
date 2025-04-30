@@ -1,31 +1,31 @@
-services:
-    odoo:
-        container_name: odoo18
-        image: odoo:18
-        # build:
-        restart: always
-        tty: true
-        networks:
-            - default
-        ports:
-            - "10018:8069"
-            - "20018:8072"
-        volumes:
-            - odoo-data:/var/lib/odoo
-            - ./entrypoint.sh:/entrypoint.sh
-            - ./addons:/mnt/extra-addons
-            - ./etc:/etc/odoo
-            - ./conf:/etc/odoo
-        environment: 
-            - DB_PORT_5432_TCP_ADDR=168.231.73.120
-            - DB_PORT_5432_TCP_PORT=5432 #Default port for PostgreSQL database
-            - DB_ENV_POSTGRES_USER=xecohil
-            - DB_ENV_POSTGRES_PASSWORD=Chucam2022++
-networks:
-     default:
-         driver: bridge
-volumes:
-    odoo-data:
+#services:
+#    odoo:
+#        container_name: odoo18
+#        image: odoo:18
+#        # build:
+#        restart: always
+#        tty: true
+#        networks:
+#            - default
+#        ports:
+#            - "10018:8069"
+#            - "20018:8072"
+#        volumes:
+#            - odoo-data:/var/lib/odoo
+#            - ./entrypoint.sh:/entrypoint.sh
+#            - ./addons:/mnt/extra-addons
+#            - ./etc:/etc/odoo
+#            - ./conf:/etc/odoo
+#        environment: 
+#            - DB_PORT_5432_TCP_ADDR=168.231.73.120
+#            - DB_PORT_5432_TCP_PORT=5432 #Default port for PostgreSQL database
+#            - DB_ENV_POSTGRES_USER=xecohil
+#            - DB_ENV_POSTGRES_PASSWORD=Chucam2022++
+#networks:
+#     default:
+#         driver: bridge
+#volumes:
+#    odoo-data:
 
 
 #services:
@@ -61,30 +61,31 @@ volumes:
 #  odoo-web-data:
 
 
-#services:
-#  odoo_web:
-#    image: odoo:18
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    user: root
-#    ports:
-#      - "10018:8069"
-#      - "20018:8072" # live chat
-#    environment:
-#      - DB_HOST=168.231.73.120
-#      - DB_PORT=5432
-#      - DB_USER=xecohil
-#      - DB_PASSWORD=Chucam2022++
-#      - PIP_BREAK_SYSTEM_PACKAGES=1
-#    volumes:
-#      - ./entrypoint.sh:/entrypoint.sh
-#      - ./customs:/customs
-#      - ./odoo.conf:/etc/odoo/odoo.conf
-#      #- odoo18-web-data:/var/lib/odoo
-#      - ./addons:/mnt/extra-addons
-#      - ./etc:/etc/odoo
-#    restart: always
-#
-##volumes:
-##  odoo18-web-data:
+services:
+  odoo_web:
+    image: odoo:18
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    ports:
+      - "10018:8069"
+      - "20018:8072" # live chat
+    environment:
+      - DB_HOST=168.231.73.120
+      - DB_PORT=5432
+      - DB_USER=xecohil
+      - DB_PASSWORD=Chucam2022++
+      - DB_DATABASE=odoo
+      - PIP_BREAK_SYSTEM_PACKAGES=1
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+      - ./customs:/customs
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      #- odoo18-web-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
+    restart: always
+
+#volumes:
+#  odoo18-web-data:
