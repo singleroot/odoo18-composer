@@ -1,0 +1,19 @@
+services:
+  odoo_web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8069:8069"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=odoo18
+      - DB_PASSWORD=odoo
+    volumes:
+      - ./customs:/customs
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - odoo18-web-data:/var/lib/odoo
+
+volumes:
+  odoo18-web-data:
