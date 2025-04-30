@@ -1,34 +1,63 @@
 services:
-  web:
-    image: odoo:18
-    build:
-      context: .
-      dockerfile: Dockerfile
-    #depends_on:
-    #  - db
-    ports:
-      - "10018:8069"
-      - "20018:8072"
-    user: root
-    volumes:
-      - ./entrypoint.sh:/entrypoint.sh
-      - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
-    tty: true
-    command: --
-    environment:
-      - DB_HOST=168.231.73.120
-      - DB_PORT=5432
-      - DB_USER=xecohil
-      - DB_PASSWORD=Chucam2022++
-      - PIP_BREAK_SYSTEM_PACKAGES=1
-      #- PASSWORD_FILE=/run/secrets/postgresql_password
-    restart: always
-    #secrets:
-    #  - postgresql_password
+    odoo:
+        container_name: odoo18
+        image: odoo:18
+        # build:
+        restart: always
+        tty: true
+        networks:
+            - default
+        ports:
+            - "10018:8069"
+            - "20018:8072"
+        volumes:
+            - odoo-data:/var/lib/odoo:delegated
+            - ~/odoo15e/enterprise:/mnt/enterprise:delegated
+            - ~/odoo15e/design-themes:/mnt/design-themes:delegated
+            - ./conf:/etc/odoo
+        environment: 
+            - DB_PORT_5432_TCP_ADDR=168.231.73.120
+            - DB_PORT_5432_TCP_PORT=5432 #Default port for PostgreSQL database
+            - DB_ENV_POSTGRES_USER=xecohil
+            - DB_ENV_POSTGRES_PASSWORD=Chucam2022++
+networks:
+     default:
+         driver: bridge
 volumes:
-  odoo-web-data:
+    odoo-data:
+
+
+#services:
+#  web:
+#    image: odoo:18
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    #depends_on:
+#    #  - db
+#    ports:
+#      - "10018:8069"
+#      - "20018:8072"
+#    user: root
+#    volumes:
+#      - ./entrypoint.sh:/entrypoint.sh
+#      - odoo-web-data:/var/lib/odoo
+#      - ./config:/etc/odoo
+#      - ./addons:/mnt/extra-addons
+#    tty: true
+#    command: --
+#    environment:
+#      - DB_HOST=168.231.73.120
+#      - DB_PORT=5432
+#      - DB_USER=xecohil
+#      - DB_PASSWORD=Chucam2022++
+#      - PIP_BREAK_SYSTEM_PACKAGES=1
+#      #- PASSWORD_FILE=/run/secrets/postgresql_password
+#    restart: always
+#    #secrets:
+#    #  - postgresql_password
+#volumes:
+#  odoo-web-data:
 
 
 #services:
