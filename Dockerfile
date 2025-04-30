@@ -84,7 +84,7 @@ COPY ./entrypoint.sh /
 COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x ./entrypoint.sh
-COPY ./entrypoint.sh /entry.sh
+COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 COPY ./odoo.conf /etc/odoo/
@@ -106,7 +106,5 @@ COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 # Set default user when running the container
 USER odoo
 
-#RUN ["chmod", "+x", "/entrypoint.sh"]
-
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
