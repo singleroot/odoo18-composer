@@ -79,13 +79,6 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
     && apt-get -y install --no-install-recommends ./odoo.deb \
     && rm -rf /var/lib/apt/lists/* odoo.deb
 
-# Copy entrypoint script and Odoo configuration file
-COPY ./entrypoint.sh /
-COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-RUN chmod +x ./entrypoint.sh
-COPY ./entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
 
 COPY ./odoo.conf /etc/odoo/
 
@@ -105,6 +98,14 @@ COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
 # Set default user when running the container
 USER odoo
+
+# Copy entrypoint script and Odoo configuration file
+COPY ./entrypoint.sh /
+COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 #ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
