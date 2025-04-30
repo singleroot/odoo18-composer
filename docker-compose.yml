@@ -11,7 +11,7 @@ services:
             - "10018:8069"
             - "20018:8072"
         volumes:
-            - odoo-data:/var/lib/odoo:delegated
+            - odoo-data:/var/lib/odoo
             - ./entrypoint.sh:/entrypoint.sh
             - ./addons:/mnt/extra-addons
             - ./etc:/etc/odoo
