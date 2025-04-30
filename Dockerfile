@@ -68,6 +68,7 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main' > /etc/a
 
 # Install rtlcss (on Debian buster)
 RUN npm install -g rtlcss
+RUN chmod +x /entrypoint.sh
 
 # Install Odoo
 ENV ODOO_VERSION 18.0
@@ -101,7 +102,6 @@ COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 USER odoo
 
 RUN ["chmod", "+x", "/entrypoint.sh"]
-RUN ["chmod", "+x", "/usr/bin/foxx"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
